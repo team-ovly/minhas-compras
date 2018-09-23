@@ -1,0 +1,47 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZMY_PO_00_SRV" xml:lang="en" sap:schema-version="1">
+			<EntityType Name="Compra" sap:content-version="1">
+				<Key><PropertyRef Name="Id"/></Key><Property Name="Id" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Node Key" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="80" sap:unicode="false" sap:label="Company" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CreatedAt" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Created At" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><NavigationProperty Name="ToFornecedor" Relationship="ZMY_PO_00_SRV.Compra_Fornecedor" FromRole="FromRole_Compra_Fornecedor"
+					ToRole="ToRole_Compra_Fornecedor"/><NavigationProperty Name="ToItens" Relationship="ZMY_PO_00_SRV.Compra_Item" FromRole="FromRole_Compra_Item" ToRole="ToRole_Compra_Item"/></EntityType>
+			<EntityType Name="Item" sap:content-version="1">
+				<Key><PropertyRef Name="PoId"/><PropertyRef Name="Position"/></Key><Property Name="PoId" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Node Key" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Position" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Item Position"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Material" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Node Key" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="MaterialName" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="Description"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="Fornecedor" sap:content-version="1">
+				<Key><PropertyRef Name="Id"/></Key><Property Name="Id" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Node Key" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Role" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Bus. Part. Role" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="EmailAddress" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="Email" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CompanyName" Type="Edm.String" Nullable="false" MaxLength="80" sap:unicode="false" sap:label="Company" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<Association Name="Compra_Fornecedor" sap:content-version="1"><End Type="ZMY_PO_00_SRV.Compra" Multiplicity="1" Role="FromRole_Compra_Fornecedor"/><End Type="ZMY_PO_00_SRV.Fornecedor" Multiplicity="1" Role="ToRole_Compra_Fornecedor"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_Compra_Fornecedor"><PropertyRef Name="Id"/></Principal>
+					<Dependent Role="ToRole_Compra_Fornecedor"><PropertyRef Name="Id"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="Compra_Item" sap:content-version="1"><End Type="ZMY_PO_00_SRV.Compra" Multiplicity="1" Role="FromRole_Compra_Item"/><End Type="ZMY_PO_00_SRV.Item" Multiplicity="*" Role="ToRole_Compra_Item"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_Compra_Item"><PropertyRef Name="Id"/></Principal>
+					<Dependent Role="ToRole_Compra_Item"><PropertyRef Name="PoId"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityContainer Name="ZMY_PO_00_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="Compras" EntityType="ZMY_PO_00_SRV.Compra" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:content-version="1"/><EntitySet Name="Itens" EntityType="ZMY_PO_00_SRV.Item" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:content-version="1"/><EntitySet Name="Fornecedores" EntityType="ZMY_PO_00_SRV.Fornecedor" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:content-version="1"/>
+				<AssociationSet Name="Compras_Itens" Association="ZMY_PO_00_SRV.Compra_Item" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1"><End EntitySet="Compras" Role="FromRole_Compra_Item"/><End EntitySet="Itens" Role="ToRole_Compra_Item"/></AssociationSet>
+				<AssociationSet Name="Compra_Fornecedores" Association="ZMY_PO_00_SRV.Compra_Fornecedor" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1"><End EntitySet="Compras" Role="FromRole_Compra_Fornecedor"/><End EntitySet="Fornecedores" Role="ToRole_Compra_Fornecedor"/></AssociationSet>
+			</EntityContainer><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self"
+				href="https://gateway.ovly.com.br:80/sap/opu/odata/sap/ZMY_PO_00_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version"
+				href="https://gateway.ovly.com.br:80/sap/opu/odata/sap/ZMY_PO_00_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

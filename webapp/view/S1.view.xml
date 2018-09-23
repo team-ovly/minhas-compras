@@ -1,0 +1,16 @@
+<mvc:View controllerName="ovly.aluno00.mm.MinhasCompras.controller.S1" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true" xmlns="sap.m">
+	<Page title="{i18n>s1_page_title}">
+		<content>
+			<List items="{/Compras}" itemPress="onItemPress">
+				<items>
+					<ObjectListItem type="Active" intro="{Id}" title="{Name}" number="999" numberUnit="reais">
+						<attributes>
+							<ObjectAttribute title="{i18n>created_at}" text="{CreatedAt}"/>
+						</attributes>
+					</ObjectListItem>
+				</items>
+			</List>
+		</content>
+	</Page>
+</mvc:View>

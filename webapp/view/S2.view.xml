@@ -1,0 +1,54 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml"
+	controllerName="ovly.aluno00.mm.MinhasCompras.controller.S2">
+	<Page title="{i18n>s2_page_title}" showNavButton="true" navButtonPress="onBack">
+		<content>
+			<ObjectHeader intro="{Id}" title="{Name}" number="10" numberUnit="reais" icon="sap-icon://document">
+				<attributes>
+					<ObjectAttribute title="{i18n>created_at}" text="{CreatedAt}"/>
+				</attributes>
+				<statuses>
+					<ObjectStatus title="" text="TIPO"/>
+				</statuses>
+			</ObjectHeader>
+			<Table items="{ToItens}" fixedLayout="false"  >
+				<items>
+					<ColumnListItem >
+						<cells>
+							<ObjectIdentifier title="{MaterialName}" text="{Material}" />
+							<ObjectStatus icon="sap-icon://product" text="1" />
+							<ObjectNumber number="10" unit="reais" />
+							<ObjectNumber number="10" unit="reais" />
+						</cells>
+					</ColumnListItem>
+				</items>
+				<columns>
+					<Column >
+						<header>
+							<Label text="{i18n>s2_column_title_product}"/>
+						</header>
+					</Column>
+					<Column demandPopin="true" minScreenWidth="Tablet" popinDisplay="Inline">
+						<header>
+							<Label text="{i18n>s2_column_title_quantity}"/>
+						</header>
+					</Column>
+					<Column demandPopin="true" minScreenWidth="Phone" popinDisplay="Block">
+						<header>
+							<Label text="{i18n>s2_column_title_unit_price}"/>
+						</header>
+					</Column>
+					<Column minScreenWidth="Tablet">
+						<header>
+							<Label text="{i18n>s2_column_title_total}"/>
+						</header>
+					</Column>
+				</columns>
+			</Table>
+		</content>
+		<footer>
+			<Toolbar>
+				<Button text="criar " press="onCreate" />
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

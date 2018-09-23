@@ -1,0 +1,17 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="ovly.aluno00.mm.MinhasCompras.controller.S0"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<!--<App id="rootContainer">-->
+	<!--	<pages>-->
+		
+	<!--	</pages>-->
+	<!--</App>-->
+	
+	<SplitApp id="rootContainer">
+		<masterPages>
+			
+		</masterPages>
+		<detailPages>
+			
+		</detailPages>
+	</SplitApp>
+</mvc:View>
